@@ -1,0 +1,15 @@
+[
+  {
+    "id": 1753087886958,
+    "title": "Testing the api again updated",
+    "content": "Node.js lets you run JS on the server.",
+    "createdAt": "2025-07-21T08:51:26.958Z",
+    "updatedAt": "2025-07-21T09:07:50.105Z"
+  },
+  {
+    "id": 1753163223971,
+    "title": "Demo Data",
+    "content": "const connectDB = async () => {\n  try {\n    const conn = await mongoose.connect('mongodb://127.0.0.1:27017/notes_app');\n\n    console.log(`✅ MongoDB Connected: ${conn.connection.host}`);\n  } catch (error) {\n    console.error(`❌ MongoDB connection failed: ${error.message}`);\n    process.exit(1);\n  }\n};\n\nexport default connectDB;",
+    "createdAt": "2025-07-22T05:47:03.971Z"
+  }
+]
