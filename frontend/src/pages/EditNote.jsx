@@ -67,7 +67,7 @@ const EditNote = () => {
     );
 
   return (
-    <div className="container col-12 col-sm-10 mt-4">
+    <div className="col-12 col-sm-10 mt-4">
       <div className="card shadow p-4">
         <h2 className="mb-4 text-primary">✏️ Edit Note</h2>
 

@@ -25,7 +25,7 @@ const NoteDetail = () => {
 
   if (error) {
     return (
-      <div className="container mt-4 col-12 col-sm-10">
+      <div className="mt-4 col-12 col-sm-10">
         <div className="alert alert-danger" role="alert">
           <h5 className="alert-heading">Error</h5>
           <p>{error}</p>
