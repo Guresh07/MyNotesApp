@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { API_BASE } from "../api/auth";
 
 const AdminDashboard = () => {
     const [allUsers, setAllUsers] = useState([]);
@@ -11,7 +12,7 @@ const AdminDashboard = () => {
 
     const fetchUsers = async () => {
         try {
-            const res = await axios.get("http://localhost:5000/api/admin/users", {
+            const res = await axios.get(`${API_BASE}/admin/users`, {
                 headers: { Authorization: `Bearer ${token}` },
             });
             setAllUsers(res.data);
@@ -25,7 +26,7 @@ const AdminDashboard = () => {
     const handleApprove = async (userId) => {
         try {
             await axios.patch(
-                `http://localhost:5000/api/admin/approve/${userId}`,
+                `${API_BASE}/admin/approve/${userId}`,
                 {},
                 { headers: { Authorization: `Bearer ${token}` } }
             );
@@ -41,7 +42,7 @@ const AdminDashboard = () => {
 
     const handleReject = async (userId) => {
         try {
-            await axios.delete(`http://localhost:5000/api/admin/reject/${userId}`, {
+            await axios.delete(`${API_BASE}/admin/reject/${userId}`, {
                 headers: { Authorization: `Bearer ${token}` },
             });
             setAllUsers(prev => prev.filter(user => user._id !== userId));
