@@ -150,7 +150,7 @@ body.theme-dark .note-item-hover:hover {
 #card-body::after{
   content: "⏬";
   position: absolute;
-  top: 1px;
+  top: -26px;
   left: 3%;
   transform: translateX(-50%);
   font-size: 1.1rem;
@@ -158,8 +158,8 @@ body.theme-dark .note-item-hover:hover {
 #notes::after{
   content: "Go to Notes";
   position: absolute;
-  top: -4px;
-  left: 4%;
+  top: -5px;
+  left: 3%;
   transform: translateX(-50%);
   font-size: 0.5rem;
   font-weight: 500;
