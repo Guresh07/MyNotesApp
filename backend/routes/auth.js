@@ -31,7 +31,7 @@ router.post('/register', async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, salt);
 
     // 4. Create new user
-    const newUser = new User({ username, email, password: hashedPassword });
+    const newUser = new User({ username, email, password: hashedPassword, isAdmin: false });
     await newUser.save();
 
     // 5. Send success response
@@ -57,6 +57,7 @@ router.post('/login', async (req, res) => {
     if (!user) {
       return res.status(401).json({ error: 'Invalid credentials' });
     }
+    if (!user.isApproved) return res.status(403).json({ message: "Account not approved by admin" });
 
     // 3. Compare password
     const isMatch = await bcrypt.compare(password, user.password);
@@ -66,16 +67,17 @@ router.post('/login', async (req, res) => {
 
     // 4. Generate JWT Token
     const token = jwt.sign(
-      { userId: user._id, username: user.username },
+      { userId: user._id, username: user.username, isAdmin: user.isAdmin },
       JWT_SECRET,
       { expiresIn: '2h' }
     );
 
     // 5. Send token and user info
-    res.json({ token, user: { id: user._id, username: user.username, email: user.email } });
+    res.json({ token, user: { id: user._id, username: user.username, email: user.email, isAdmin: user.isAdmin } });
   } catch (err) {
     console.error('Login Error:', err.message);
     res.status(500).json({ error: 'Server error' });
+    res.status(500).json({ message: "Error logging in" });
   }
 });
 

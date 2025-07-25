@@ -14,7 +14,16 @@ const userSchema = new mongoose.Schema({
   password: {
     type: String,
     required: true,
+  },
+  isAdmin: {
+    type: Boolean,
+    default: false,
+  },
+  isApproved: {
+    type: Boolean,
+    default: false,
   }
+
 }, {
   timestamps: true // adds createdAt, updatedAt automatically
 });

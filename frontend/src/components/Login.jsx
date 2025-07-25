@@ -46,7 +46,7 @@ const Login = () => {
       if (err.response?.data?.error) {
         setError(err.response.data.error);
       } else {
-        setError("Login failed. Please try again.");
+        setError("Login failed or Account not Approved by Admin. Please try again later.");
       }
     } finally {
       setLoading(false);

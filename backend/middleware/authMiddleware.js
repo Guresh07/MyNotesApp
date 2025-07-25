@@ -17,7 +17,6 @@ const verifyToken = (req, res, next) => {
   try {
     // 2. Verify token and extract user data
     const decoded = jwt.verify(token, JWT_SECRET);
-
     // 3. Attach user to request object
     req.user = decoded;
 

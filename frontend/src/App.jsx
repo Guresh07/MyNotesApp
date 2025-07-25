@@ -14,6 +14,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import { useAuth } from "./context/AuthContext";
 import { Navigate } from "react-router-dom";
 import { useTheme } from './context/ThemeContext';
+import AdminDashboard from './pages/AdminDashboard';
 
 
 function App() {
@@ -41,6 +42,14 @@ function App() {
               <Route path="/register" element={<Register />} />
               <>
                 {/* Protected Routes */}
+                {user?.isAdmin == true &&                
+                <Route path="/admin/dashboard"
+                 element={
+                  <ProtectedRoute>
+                    <AdminDashboard />
+                  </ProtectedRoute>
+                 } />
+                }
                 <Route
                   path="/"
                   element={

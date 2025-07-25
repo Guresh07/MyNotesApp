@@ -10,7 +10,11 @@ const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light px-4 rounded col-12 col-sm-10">
       <Link to="/" className="navbar-brand">📝 My Notes</Link>
-
+      {user?.isAdmin && (
+        <span className="nav-item">
+          <Link to="/admin/dashboard" className="nav-link">Admin</Link>
+        </span>
+      )}
       {user && (
         <div className="ms-auto">
           <span>
