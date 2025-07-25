@@ -19,15 +19,34 @@ const NoteItem = ({ note, handleDelete }) => {
       }
 
       const doc = new jsPDF();
+      const pageHeight = doc.internal.pageSize.height;
+      const margin = 10;
+      let y = 20;
+
       doc.setFontSize(16);
-      doc.text(`Title: ${note.title}`, 10, 20);
+      doc.text(`Title: ${note.title}`, margin, y);
+      y += 10;
+
       doc.setFontSize(12);
-      doc.text(note.content, 10, 40);
+
+      // Split text into lines that fit within page width
+      const lines = doc.splitTextToSize(note.content, 180);
+
+      lines.forEach((line) => {
+        if (y > pageHeight - 10) {
+          doc.addPage();
+          y = 10;
+        }
+        doc.text(line, margin, y);
+        y += 7;
+      });
+
       doc.save(`${note.title.replace(/[^a-zA-Z0-9]/g, '_')}.pdf`);
     } catch (err) {
       alert("PDF Download failed: " + err.message);
     }
   };
+
 
 
   const handleDownloadTxt = async () => {
