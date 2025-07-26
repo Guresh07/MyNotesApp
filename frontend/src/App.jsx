@@ -15,6 +15,8 @@ import { useAuth } from "./context/AuthContext";
 import { Navigate } from "react-router-dom";
 import { useTheme } from './context/ThemeContext';
 import AdminDashboard from './pages/AdminDashboard';
+import FeedbackForm from './components/FeedbackForm';
+import AdminFeedbacks from './pages/AdminFeedbacks';
 
 
 function App() {
@@ -35,20 +37,20 @@ function App() {
         <BrowserRouter>
           <div className="container d-flex flex-column align-items-center justify-content-center py-4">
             <Navbar />
-            
+
 
             <Routes>
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
               <>
                 {/* Protected Routes */}
-                {user?.isAdmin == true &&                
-                <Route path="/admin/dashboard"
-                 element={
-                  <ProtectedRoute>
-                    <AdminDashboard />
-                  </ProtectedRoute>
-                 } />
+                {user?.isAdmin == true &&
+                  <Route path="/admin/dashboard"
+                    element={
+                      <ProtectedRoute>
+                        <AdminDashboard />
+                      </ProtectedRoute>
+                    } />
                 }
                 <Route
                   path="/"
@@ -74,14 +76,33 @@ function App() {
                     </ProtectedRoute>
                   }
                 />
+
+                <Route
+                  path="/feedback"
+                  element={
+                    <ProtectedRoute>
+                      <FeedbackForm />
+                    </ProtectedRoute>
+                  } />
+
+                <Route
+                  path="/admin/feedbacks"
+                  element={
+                    <ProtectedRoute>
+                      <AdminFeedbacks />
+                    </ProtectedRoute>
+                  } />
+
               </>
+
+
             </Routes>
 
             <ToastContainer position="top-center" autoClose={1500} />
           </div>
         </BrowserRouter>
         <div className='theme-toggle-btn m-0 p-0'>
-        <a href="#" className='goToTop'></a>
+          <a href="#" className='goToTop'></a>
           <button onClick={toggleTheme} className="btn btn-secondary btn-sm">
             {theme === 'dark' ? '☀️' : '🌙'}
           </button>

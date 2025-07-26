@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { API_BASE } from "../api/auth";
+import { BsCheckCircle, BsXCircle, BsPersonX, BsPersonCheck } from "react-icons/bs"; // or use bootstrap-icons CDN in index.html
+
 
 const AdminDashboard = () => {
     const [allUsers, setAllUsers] = useState([]);
@@ -69,24 +71,24 @@ const AdminDashboard = () => {
 
     return (
         <div className="col-sm-10 col-12 mt-4">
-            <h2 className="mb-4">Admin Dashboard</h2>
+            <h2 className="mb-4">🛠️ Admin Dashboard</h2>
 
-            <div className="d-flex flex-wrap justify-content-between align-items-center mb-3">
+            <div className="d-flex flex-wrap justify-content-between align-items-center mb-4">
                 <div className="btn-group mb-2">
                     <button
-                        className={`btn btn-outline-primary btn-sm ${filter === "all" ? "active" : ""}`}
+                        className={`btn btn-sm ${filter === "all" ? "btn-primary" : "btn-outline-primary"}`}
                         onClick={() => setFilter("all")}
                     >
                         All
                     </button>
                     <button
-                        className={`btn btn-outline-primary btn-sm ${filter === "approved" ? "active" : ""}`}
+                        className={`btn btn-sm ${filter === "approved" ? "btn-primary" : "btn-outline-primary"}`}
                         onClick={() => setFilter("approved")}
                     >
                         Approved
                     </button>
                     <button
-                        className={`btn btn-outline-primary btn-sm ${filter === "notApproved" ? "active" : ""}`}
+                        className={`btn btn-sm ${filter === "notApproved" ? "btn-primary" : "btn-outline-primary"}`}
                         onClick={() => setFilter("notApproved")}
                     >
                         Not Approved
@@ -95,55 +97,62 @@ const AdminDashboard = () => {
 
                 <input
                     type="text"
-                    placeholder="Search by username"
-                    className="form-control form-control-sm w-auto"
+                    placeholder="🔍 Search by username"
+                    className="form-control form-control-sm w-auto border-secondary"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                 />
             </div>
 
             {filteredUsers.length === 0 ? (
-                <div className="alert alert-info">No users found for this filter or search.</div>
+                <div className="alert alert-secondary border-secondary">
+                    No users found for this filter or search.
+                </div>
             ) : (
-                <table className="table table-bordered shadow-sm">
-                    <thead className="table-light">
-                        <tr>
-                            <th>Username</th>
-                            <th>Status</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {filteredUsers.map(user => (
-                            <tr key={user._id}>
-                                <td>{user.username}</td>
-                                <td>
-                                    <span className={`badge ${user.isApproved ? "bg-success" : "bg-warning text-dark"}`}>
-                                        {user.isApproved ? "Approved" : "Not Approved"}
-                                    </span>
-                                </td>
-                                <td>
-                                    {!user.isApproved && (
-                                        <>
+                <div className="row g-3">
+                    {filteredUsers.map((user) => (
+                        <div className="col-md-6 col-lg-4" key={user._id}>
+                            <div className={`card shadow-sm border-${user.isApproved ? "success" : "warning"}`}>
+                                <div className="card-body">
+                                    <div className="d-flex justify-content-between align-items-center mb-2">
+                                        <h5 className="card-title mb-0">
+                                            <i className="bi bi-person-circle me-2"></i>
+                                            {user.username}
+                                        </h5>
+                                        <span className={`badge ${user.isApproved ? "bg-success" : "bg-warning text-dark"}`}>
+                                            {user.isApproved ? (
+                                                <>
+                                                    <BsCheckCircle className="me-1" /> Approved
+                                                </>
+                                            ) : (
+                                                <>
+                                                    <BsXCircle className="me-1" /> Not Approved
+                                                </>
+                                            )}
+                                        </span>
+                                    </div>
+
+                                    <div className="d-flex justify-content-between">
+                                        <button
+                                            onClick={() => handleReject(user._id)}
+                                            className="btn btn-outline-danger btn-sm"
+                                        >
+                                            <BsPersonX className="me-1" /> Reject
+                                        </button>
+                                        {!user.isApproved && (
                                             <button
                                                 onClick={() => handleApprove(user._id)}
-                                                className="btn btn-success btn-sm me-2"
+                                                className="btn btn-outline-success btn-sm me-2"
                                             >
-                                                Approve
+                                                <BsPersonCheck className="me-1" /> Approve
                                             </button>
-                                        </>
-                                    )}
-                                    <button
-                                        onClick={() => handleReject(user._id)}
-                                        className="btn btn-danger btn-sm my-1"
-                                    >
-                                        Reject
-                                    </button>
-                                </td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
+                                        )}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
             )}
         </div>
     );

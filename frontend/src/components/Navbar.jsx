@@ -8,13 +8,24 @@ const Navbar = () => {
   const user = JSON.parse(localStorage.getItem("user")); // Moved here
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light px-4 rounded col-12 col-sm-10">
+    <nav className="navbar flex-nowrap px-4 rounded col-12 col-sm-10">
+      <div className="d-flex flex-wrap">
       <Link to="/" className="navbar-brand">📝 My Notes</Link>
       {user?.isAdmin && (
-        <span className="nav-item">
-          <Link to="/admin/dashboard" className="nav-link">Admin</Link>
-        </span>
+        <div className="d-flex align-items-center justify-content-center gap-3 me-auto">
+          <span className="nav-item">
+            <Link to="/admin/dashboard" className="nav-link text-info">
+              🛠️ Admin
+            </Link>
+          </span>
+          <span className="nav-item">
+            <Link to="/admin/feedbacks" className="nav-link text-info">
+              📬 Feedbacks
+            </Link>
+          </span>
+        </div>
       )}
+      </div>
       {user && (
         <div className="ms-auto">
           <span>

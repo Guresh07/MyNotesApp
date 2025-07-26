@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { API_BASE } from '../api/auth';
+import { Link } from 'react-router-dom';
 
 const NoteForm = ({ setNotes }) => {
   const [title, setTitle] = useState('');
@@ -99,6 +100,7 @@ const NoteForm = ({ setNotes }) => {
                   'Add Note'
                 )}
               </button>
+              <Link to="/feedback" className="nav-link my-1 text-center">Give Your Feedback 👈</Link>
             </div>
           </fieldset>
         </form>
