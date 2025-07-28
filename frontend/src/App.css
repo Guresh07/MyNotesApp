@@ -3,6 +3,7 @@ body.theme-dark .navbar .navbar-brand {
   background-color: #1f1f1f !important;
   color: rgb(255, 255, 255);
 }
+
 body.theme-light .navbar {
   background-color: white !important;
 }
@@ -50,14 +51,17 @@ body.theme-dark ::placeholder {
   color: #aaa;
 }
 
-body.theme-dark .btn, body.theme-dark .btn-close {
+body.theme-dark .btn,
+body.theme-dark .btn-close {
   background-color: #333;
   color: #fff;
   border-color: #555;
 }
+
 body.theme-dark .btn:hover {
   background-color: #444;
 }
+
 body.theme-dark .input-group-text {
   background-color: #333;
   border: none;
@@ -147,19 +151,20 @@ body.theme-dark .note-item-hover:hover {
   /* hide scrollbar on Chrome/Safari */
 }
 
-#card-body::after{
+#card-body::after {
   content: "⏬";
   position: absolute;
-  top: -26px;
-  left: 3%;
+  right: -19px;
+  top: 2px;
   transform: translateX(-50%);
   font-size: 1.1rem;
 }
-#notes::after{
+
+#notes::after {
   content: "Go to Notes";
   position: absolute;
-  top: -5px;
-  left: 3%;
+  right: 0px;
+  top: 8px;
   transform: translateX(-50%);
   font-size: 0.5rem;
   font-weight: 500;
