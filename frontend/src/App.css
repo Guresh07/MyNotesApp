@@ -67,7 +67,7 @@ body.theme-dark .input-group-text {
   border: none;
 }
 
-body.theme-dark .table{
+body.theme-dark .table {
   background-color: #1f1f1f !important;
   color: rgb(255, 255, 255);
 }
@@ -96,6 +96,7 @@ body.theme-dark .table{
   -ms-overflow-style: none;
   /* IE 10+ */
 }
+
 .feedback-list-scroll-container {
   max-height: 400px;
   /* Adjust as needed */
@@ -183,8 +184,8 @@ body.theme-dark .note-item-hover:hover {
 #card-body::after {
   content: "⏬";
   position: absolute;
-  right: -19px;
-  top: 2px;
+  right: 8px;
+  top: 8px;
   transform: translateX(-50%);
   font-size: 1.1rem;
 }
@@ -192,8 +193,8 @@ body.theme-dark .note-item-hover:hover {
 #notes::after {
   content: "Go to Notes";
   position: absolute;
-  right: 0px;
-  top: 8px;
+  right: -18px;
+  top: 2px;
   transform: translateX(-50%);
   font-size: 0.5rem;
   font-weight: 500;
