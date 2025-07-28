@@ -67,6 +67,11 @@ body.theme-dark .input-group-text {
   border: none;
 }
 
+body.theme-dark .table{
+  background-color: #1f1f1f !important;
+  color: rgb(255, 255, 255);
+}
+
 .note-list-scroll-container {
   max-height: 400px;
   /* Adjust as needed */
@@ -88,6 +93,30 @@ body.theme-dark .input-group-text {
 
 /* Hide scrollbar for IE and Edge */
 .note-list-scroll-container {
+  -ms-overflow-style: none;
+  /* IE 10+ */
+}
+.feedback-list-scroll-container {
+  max-height: 400px;
+  /* Adjust as needed */
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.feedback-list-scroll-container::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+/* Hide scrollbar for Firefox */
+.feedback-list-scroll-container {
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+/* Hide scrollbar for IE and Edge */
+.feedback-list-scroll-container {
   -ms-overflow-style: none;
   /* IE 10+ */
 }
@@ -169,3 +198,11 @@ body.theme-dark .note-item-hover:hover {
   font-size: 0.5rem;
   font-weight: 500;
 }
+
+/* .card-text::-webkit-scrollbar {
+  width: 6px;
+}
+.card-text::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+} */

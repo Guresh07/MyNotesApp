@@ -9,6 +9,8 @@ import connectDB from './config/db.js';   // <-- MongoDB connection
 import notesRouter from './routes/notes.js';
 import authRoutes from './routes/auth.js';
 import adminRoutes from './routes/admin.js'
+import feedbackRoutes from "./routes/feedback.js";
+
 
 // 1. Connect to MongoDB
 connectDB();  // This will initiate the DB connection
@@ -23,6 +25,7 @@ app.use(express.json());
 app.use(process.env.AUTH_ROUTES, authRoutes);
 app.use(process.env.NOTES_ROUTER, notesRouter);
 app.use(process.env.ADMIN_ROUTES, adminRoutes); 
+app.use(process.env.FEEDBACK_ROUTES, feedbackRoutes);
 
 app.get('/', (req, res) => {
   res.send('Welcome to the Notes API!');
